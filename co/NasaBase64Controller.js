@@ -27,9 +27,18 @@ app.get('/nasa', (req, res) => {
 })
 
 // edit
-app.post('/editnasa/:id', async (req, res) => {
-    const nasa =  await NasaModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
-    res.json(nasa);
+app.post('/editnasa', async (req, res) => {
+    try {
+        const result = await NasaModel.findByIdAndUpdate(req.body.id, req.body, { new: true }).then(
+            post => {
+                res.json("cap nhat thanh cong");
+            }
+        );
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("loi cap nhat user");
+    }
 })
 //delete
 app.get('/delete/:id', async (req, res) => {
