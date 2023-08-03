@@ -197,7 +197,7 @@ app.post('/like', async (req, res) => {
     }
 });
 
-app.get('/like', async (req, res) => {
+app.get('/likeeee', async (req, res) => {
     Like.find({}).then(users => {
         res.send(users)
 

@@ -21,7 +21,7 @@ app.post('/addnasadata', async (req, res) => {
 // get all data 
 app.get('/nasa', (req, res) => {
     NasaModel.find({}).then(data => {
-        res.send(data)
+        res.send("data")
         
     })
 })
