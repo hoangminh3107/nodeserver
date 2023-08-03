@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<style>
+		body{
+			font-family: "Roboto",sans-serif;
+			background: #9b59b6;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+		}
+		.container{
+			background: #fff;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0,0.0,0.3);
+			width: 400px;
+			max-width: 100%;
+		}
+		h2{
+			padding: 20px 20px;
+			text-align: center;
+			background: #f7f7f7;
+			margin: 0;
+			border-bottom: 1px solid #f0f0f0;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+		form{
+			padding: 10px 40px 5px 40px;
+
+		}
+		label{
+			display: block;
+			font-weight: bold;
+			margin: 10px 0;
+		}
+		input[type=email]{
+			width: 300px;
+			padding: 5px 10px;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			outline: none;
+			margin-bottom: 12px;
+		}
+		input[type=password]{
+			width: 250px;
+			padding: 3px 5px;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			outline: none;
+			margin-bottom: 20px;
+			margin-right: 15px;
+		}
+		input[type=checkbox]{
+			margin-bottom: 14px;
+			margin-right: 5px;
+		}
+		button {
+			background-color: #9b59b6;
+		    color: white;
+		    padding: 12px 20px;
+		    margin: 10px 0 5px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    font-size: 16px;
+		    width: 322px;
+		    font-weight: bold;
+		}
+        span{
+           padding: 14px 30px;  
+        }
+        a{
+            text-decoration: none;
+        }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Đăng Ký</h2>
+		<form action="/register" onsubmit="return Kiemtra()" method="post">
+			<label for="ho">Email :</label>
+			<input type="email" id="hoten" name="user">  <br>
+			<div id="thongbao1" style="font-size: 12px;color: red"></div>
+
+			
+
+			<label for="sdt">Password:</label>
+			<input style="width: 310px; height: 20px;" type="password" id="sdt" name="pass" > <br>
+			<div id="thongbao3" style="font-size: 12px;color: red"></div>
+
+            <label for="sdt">Confirm password:</label>
+			<input style="width: 310px; height: 20px;" type="password" id="sdt" > <br>
+			<div id="thongbao3" style="font-size: 12px;color: red"></div>
+
+			<button>Đăng Ký</button>
+            <span>Bạn đã có tài khoản ? <a href="/login">Đăng nhập</a></span>
+		</form>
+	</div>
+	<script>
+		function Kiemtra(){
+			var hoten=document.getElementById("hoten").value;
+			var sdt=document.getElementById("sdt").value;
+
+			var thongbao1=document.getElementById("thongbao1");
+			var thongbao2=document.getElementById("thongbao2");
+			var thongbao3=document.getElementById("thongbao3");
+
+			var nghenghiep=document.getElementsByClassName("nghenghiep");
+
+
+			//kiểm tra họ
+			if(hoten.length<8){
+				document.getElementById("hoten").style.border="1px solid red";
+				thongbao1.innerText="Bạn không được để trống!";
+				return false;
+			 }
+			else{
+			 	document.getElementById("hoten").style.border="1px solid black";
+			 	thongbao1.innerHTML="";
+			 }
+			
+			//Kiểm tra Nghề nghiệp
+			var kt=0;
+			for(var i=0;i < nghenghiep.length;i++){
+				if(nghenghiep[i].checked==true){
+					kt++;
+				}
+			}
+			if(kt==0){
+				thongbao2.innerHTML="Bạn phải chọn một nghề nghiệp";
+				return false;
+			}else{
+				thongbao2.innerHTML="";
+			}
+
+            //Kiểm tra số điện thoại
+            if(sdt.length!==10 || sdt<0){
+				document.getElementById("sdt").style.border="1px solid red";
+				thongbao3.innerHTML="Số điện thoại không hợp lệ!";
+				return false;
+			}else{
+				document.getElementById("sdt").style.border="1px solid #ccc";
+				thongbao3.innerHTML="";
+			}
+
+			alert("Bạn đã đăng kí thành công!");
+			return true;
+		}
+	</script>
+</body>
+</html>

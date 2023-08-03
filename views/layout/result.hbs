@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    {{!-- <div class="MENU" style="padding-top: 10px;">
+      <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/list">Trang Chủ </a>
+        </div>
+
+        <div class="collapse navbar-collapse js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Giới Thiệu </a></li>
+            <li><a href="#">Liên Hệ </a></li>
+            <li><a href="#">Góp Ý </a></li>
+            <li><a href="#">Hỏi Đáp </a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Hành Động
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/add">Thêm Sản Phẩm </a></li>
+                <li><a href="/login">Đăng Xuất </a></li>
+                 <li><a href="/find/ao">Áo </a></li>
+                
+              </ul>
+            </li>
+          </ul>
+
+
+          <div class="input-group navbar-right">
+            <form action="/find" method="GET">
+             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="findname" />
+             
+            </form>
+          </div>
+        </div>
+
+      </nav>
+    </div> --}}
+     <div class="row">
+                <nav class="navbar navbar-expand-lg .bg-warning-subtle mb-5 mt-2" style="border-radius: 10px;">
+                    <div class="container-fluid">
+                    
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/list">Trang Chủ</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Giới Thiệu</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Hành Động
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/add">Thêm Sản Phẩm</a></li>
+                              <li><a class="dropdown-item" href="/login">Đăng Xuất</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <form class="d-flex" role="search" method="get" action="/find">
+                          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="findname">
+                          <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </div>
+                    </div>
+                  </nav>
+            </div>
+
+
+    <div class="app">
+
+      <div class="wrapper">
+
+        <div class="list-product">
+          {{#each users}}
+          <div class="list-product-item">
+
+            <div class="list-product-item-infor">
+              <img class="item-img" src="{{this.hinhanh}}" alt="">
+              <p>
+                {{this.tensp}}
+              </p>
+              <div class="price-item">
+
+                <span>{{this.gia}}</span>
+              </div>
+
+              <div class="item-description">
+                <i class="far fa-heart heart-icon"></i>
+                <div class="item-star">
+                  <i class="fas fa-star vote-star"></i>
+                  <i class="fas fa-star vote-star"></i>
+                  <i class="fas fa-star vote-star"></i>
+                  <i class="fas fa-star vote-star"></i>
+                  <i class="fas fa-star vote-star"></i>
+                  <span class="item-sell">{{this.soluong}} đã bán</span>
+                </div>
+              </div>
+              <div class="edit-del">
+                <a href="/delete/{{this._id}}">
+                  <img src="https://cdn-icons-png.flaticon.com/128/6861/6861362.png" alt="">
+                </a>
+
+                <a href="/edit/{{this._id}}">
+                  <img src="https://cdn-icons-png.flaticon.com/128/992/992664.png" alt="">
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+          {{/each}}
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+</body>
+
+</html>
+<style>
+  .sidebar {
+    position: fixed;
+    width: 25%;
+    top: 20%;
+  }
+
+  .not-radius {
+    border-radius: 2px;
+  }
+
+  .list-product {
+
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+
+  .list-product-item {
+    width: 25%;
+    min-height: 100px;
+  }
+
+  .list-product-item-infor {
+    width: 85%;
+    height: 98%;
+    margin: auto;
+    box-shadow: 0 0 4px #887777;
+  }
+
+  .item-img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+  }
+
+  .list-product-item-infor p {
+    font-size: 20px;
+    color: red;
+  }
+
+  .edit-del img {
+    width: 5%;
+    height: 5%;
+  }
+</style>
