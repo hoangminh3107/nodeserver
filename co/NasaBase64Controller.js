@@ -21,9 +21,21 @@ app.post('/addnasadata', async (req, res) => {
 // get all data 
 app.get('/nasa', (req, res) => {
     NasaModel.find({}).then(data => {
-        res.send("data")
+        res.send(data)
         
     })
+})
+
+// edit
+app.post('/editnasa/:id', async (req, res) => {
+    const nasa =  await NasaModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+    res.json(nasa);
+})
+//delete
+app.get('/delete/:id', async (req, res) => {
+    const nasa = await NasaModel.findByIdAndDelete(req.params.id)
+    res.json(nasa);
+
 })
 
 
